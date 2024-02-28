@@ -9,18 +9,32 @@ import random
 questions = {
     "Science": [
         ("What is the chemical symbol for water?", "H2O"),
-        # Add more questions as tuples (question, answer)
+        ("What is the chemical symbol for Potassium?", "K"),
+        ("What is the chemical symbol for Calcium?", "Ca")
     ],
+
+    "Maths": [
+        ("What is the formula of area of circle?", "pi * r**2"),
+        ("What is the formula of area of square?", "L**2"),
+        ("What is the formula of Perimeter?", "2*(l+b)")],
+
+    "Computer": [
+        ("Best Programming Language?", "Python"),
+        ("RAM stands for?", "Random Access Memory"),
+        ("ROM stands for?", "Read Only Memory")]
 }
 
+
 hints = {
-    "Science": [
-        # Pair each question with a corresponding hint.
-    ],
+    "Science": ["Two elements, first one is H", "Symbol is around I", "Starts with C"],
+    "Maths": ["Involves radius", "Involves length of one side", "Involves adding all sides"],
+    "Computer": ["Known for readability and versatility", "Allows quick access to stored data", "Retains data even when power is off"]
+
     # Repeat for other categories as needed.
 }
 
 #---------------------------------------
+
 
 def select_random_question(category):
     """
@@ -35,7 +49,8 @@ def select_random_question(category):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    question = random.choice(questions[category])
+    return question
     #------------------------
 
 #---------------------------------------
@@ -54,7 +69,10 @@ def check_answer(player_answer, correct_answer):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    if player_answer == correct_answer:
+        return True
+    else:
+        return False
     #------------------------
 
 #---------------------------------------
@@ -73,7 +91,20 @@ def remove_question(category, question):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+
+    for c1, listQA in questions.items():
+        if c1 == category:
+            qindex1 = 0
+            for tupleQA in listQA:
+                Q1, A1 = tupleQA
+                if Q1 == question:
+                    break
+                else:
+                    qindex1 = qindex1 + 1
+
+    questions[category].pop(qindex1)
+
+
     #------------------------
 
 #---------------------------------------
@@ -91,7 +122,9 @@ def display_question_and_accept_answer(question):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    print("QUESTION:", question)
+    answer = input("Enter Your Answer: ")
+    return answer
     #------------------------
 
 #---------------------------------------
@@ -110,7 +143,17 @@ def provide_hint(category, question):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    for c1, listQA in questions.items():
+        if c1 == category:
+            qindex1 = 0
+            for tupleQA in listQA:
+                Q1, A1 = tupleQA
+                if Q1 == question:
+                    break
+                else:
+                    qindex1 = qindex1 + 1
+
+    return hints[category][qindex1]
     #------------------------
 
 #---------------------------------------
@@ -128,11 +171,9 @@ def display_correct_answer(correct_answer):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    print("The correct answer is:", correct_answer)
     #------------------------
 
 #---------------------------------------
-
-
 
 
