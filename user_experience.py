@@ -140,7 +140,12 @@ def fifty_fifty_lifeline(correct_answer, options):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    options_copy = options[:]  # Make a copy of the options list to avoid modifying the original list
+    options_copy.remove(correct_answer)  # Remove the correct answer from the copy
+    wrong_answer = random.choice(options_copy)  # Randomly select one incorrect answer
+    reduced_options = [correct_answer, wrong_answer]  # Create a list with the correct answer and the selected incorrect answer
+    random.shuffle(reduced_options)  # Shuffle the list to mix up the order
+    return reduced_options
     #------------------------
 
 #---------------------------------------
