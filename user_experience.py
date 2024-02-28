@@ -19,7 +19,8 @@ def choose_difficulty():
     #------------------------
     difficulty_level = input("Enter your difficulty level, ('easy', 'medium', 'hard'):").lower()
     while difficulty_level not in ['easy', 'medium', 'hard']:
-        difficulty_level = input("Invalid difficulty level. Please enter a valid difficulty level, ('easy', 'medium', 'hard'):").lower()
+        print('Invalid difficulty level')
+        difficulty_level = input("Enter your difficulty level, ('easy', 'medium', 'hard'):").lower()
     return difficulty_level
     #------------------------
 
@@ -87,15 +88,11 @@ def load_top_scores(file_path='scores.txt'):
     #------------------------
     # Add your code here
     #------------------------
-    leaderboard = {} 
-    with open(file_path, "r") as f:
-        for line in f:
-            parts = line.strip().split()
-            if len(parts) >= 2:
-                player_name = " ".join(parts[:-1])
-                score = int(parts[-1])
-                leaderboard[player_name] = score
-    return leaderboard
+    leaderboard = dict()
+    with open(file_path, 'r') as file:
+        for line in file:
+            player, score = line.strip().split(':')
+            leaderboard[player] = int(score)
     #------------------------
 
 #---------------------------------------
@@ -140,12 +137,12 @@ def fifty_fifty_lifeline(correct_answer, options):
     #------------------------
     # Add your code here
     #------------------------
-    options_copy = options[:]  # Make a copy of the options list to avoid modifying the original list
-    options_copy.remove(correct_answer)  # Remove the correct answer from the copy
-    wrong_answer = random.choice(options_copy)  # Randomly select one incorrect answer
-    reduced_options = [correct_answer, wrong_answer]  # Create a list with the correct answer and the selected incorrect answer
-    random.shuffle(reduced_options)  # Shuffle the list to mix up the order
-    return reduced_options
+    incorrect_options = []
+    for opt in options:
+        if opt != correct_answer:
+            incorrect_options.append(opt)
+    random.shuffle(incorrect_options)
+    return [correct_answer, incorrect_options[0]]
     #------------------------
 
 #---------------------------------------
@@ -167,8 +164,10 @@ def skip_question(allowed_skips):
     #------------------------
     if allowed_skips >= 1:
         allowed_skips -= 1  
+        print("You have chosen to skip this question.")
         return True  
     else:
+        print("You have no more skips available.")
         return False 
     #------------------------
 
