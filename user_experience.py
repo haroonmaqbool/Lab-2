@@ -165,7 +165,11 @@ def skip_question(allowed_skips):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    if allowed_skips >= 1:
+        allowed_skips -= 1  
+        return True  
+    else:
+        return False 
     #------------------------
 
 #---------------------------------------
