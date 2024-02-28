@@ -39,7 +39,17 @@ def display_leaderboard(leaderboard):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+
+    if not leaderboard:
+        print("No scores to display")
+        return
+    leaderboard_list = list(leaderboard.items())
+    leaderboard_list.sort(key=lambda x: x[1], reverse=True)
+    print("Leaderboard:")
+    rank = 1
+    for player, score in leaderboard_list:
+        print(f"{rank}. {player} : {score}")
+        rank += 1
     #------------------------
 
 #---------------------------------------
