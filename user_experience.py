@@ -87,7 +87,15 @@ def load_top_scores(file_path='scores.txt'):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    leaderboard = {} 
+    with open(file_path, "r") as f:
+        for line in f:
+            parts = line.strip().split()
+            if len(parts) >= 2:
+                player_name = " ".join(parts[:-1])
+                score = int(parts[-1])
+                leaderboard[player_name] = score
+    return leaderboard
     #------------------------
 
 #---------------------------------------
