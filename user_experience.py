@@ -68,7 +68,8 @@ def save_score(player_name, score, file_path='scores.txt'):
     #------------------------
     # Add your code here
     #------------------------
-    raise NotImplementedError("This function is not implemented yet.")
+    with open(file_path, "a") as f:
+        f.write(f"{player_name} {score}\n")
     #------------------------
 
 #---------------------------------------
